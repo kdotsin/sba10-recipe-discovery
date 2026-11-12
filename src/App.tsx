@@ -1,8 +1,17 @@
-function App() {
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
 
+function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <Navbar />
+
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </main>
     </>
   )
 }
