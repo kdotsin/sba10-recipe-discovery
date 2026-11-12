@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Spinner from "../components/Spinner";
 import ErrorMessage from "../components/ErrorMessage";
+import { useFavorites } from "../context/FavoritesContext";
 import type { Meal, MealResponse } from "../types";
 
 interface Ingredient {
@@ -28,6 +29,7 @@ function getIngredients(meal: Meal): Ingredient[] {
 
 function RecipeDetailPage() {
   const { recipeId } = useParams();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   const { data, loading, error } = useFetch<MealResponse>(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${encodeURIComponent(recipeId ?? "")}`
@@ -43,6 +45,7 @@ function RecipeDetailPage() {
 
   const meal = data.meals[0];
   const ingredients = getIngredients(meal);
+  const saved = isFavorite(meal.idMeal);
 
   // Instructions use line breaks between steps; drop the blank lines
   const steps = meal.strInstructions.split(/\r?\n/).filter((line) => line.trim() !== "");
@@ -66,6 +69,18 @@ function RecipeDetailPage() {
           </Link>{" "}
           · {meal.strArea}
         </p>
+
+        <button
+          type="button"
+          onClick={() => (saved ? removeFavorite(meal.idMeal) : addFavorite(meal.idMeal))}
+          className={
+            saved
+              ? "mt-4 min-h-11 rounded border border-stone-800 bg-white px-4 py-2 font-semibold text-stone-800 hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800"
+              : "mt-4 min-h-11 rounded bg-stone-800 px-4 py-2 font-semibold text-white hover:bg-stone-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800"
+          }
+        >
+          {saved ? "Remove from Favorites" : "Add to Favorites"}
+        </button>
 
         <h2 className="mt-6 text-xl font-semibold text-stone-900">Ingredients</h2>
         <ul className="mt-2 space-y-1">
