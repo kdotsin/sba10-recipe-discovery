@@ -40,7 +40,7 @@ function RecipeDetailPage() {
 
   // meals can be null or "Invalid ID", so only continue if it's a real list
   if (!data || !Array.isArray(data.meals) || data.meals.length === 0) {
-    return <p className="text-stone-700">Recipe not found.</p>;
+    return <p className="text-muted">Recipe not found.</p>;
   }
 
   const meal = data.meals[0];
@@ -59,11 +59,11 @@ function RecipeDetailPage() {
       />
 
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">{meal.strMeal}</h1>
-        <p className="mt-2 text-stone-600">
+        <h1 className="font-display text-3xl font-bold text-ink">{meal.strMeal}</h1>
+        <p className="mt-2 text-muted">
           <Link
             to={`/category/${meal.strCategory}`}
-            className="underline hover:text-stone-900"
+            className="underline hover:text-paprika"
           >
             {meal.strCategory}
           </Link>{" "}
@@ -75,19 +75,19 @@ function RecipeDetailPage() {
           onClick={() => (saved ? removeFavorite(meal.idMeal) : addFavorite(meal.idMeal))}
           className={
             saved
-              ? "mt-4 min-h-11 rounded border border-stone-800 bg-white px-4 py-2 font-semibold text-stone-800 hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800"
-              : "mt-4 min-h-11 rounded bg-stone-800 px-4 py-2 font-semibold text-white hover:bg-stone-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800"
+              ? "mt-4 min-h-11 rounded border border-paprika bg-white px-4 py-2 font-semibold text-paprika hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paprika"
+              : "mt-4 min-h-11 rounded bg-paprika px-4 py-2 font-semibold text-white hover:bg-paprika-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paprika"
           }
         >
           {saved ? "Remove from Favorites" : "Add to Favorites"}
         </button>
 
-        <h2 className="mt-6 text-xl font-semibold text-stone-900">Ingredients</h2>
+        <h2 className="mt-6 font-display text-xl font-semibold text-ink">Ingredients</h2>
         <ul className="mt-2 space-y-1">
           {ingredients.map((item, index) => (
-            <li key={index}className="flex justify-between border-b border-stone-200 py-1">
+            <li key={index} className="flex justify-between border-b border-line py-1">
               <span>{item.name}</span>
-              <span className="text-stone-600">{item.measure}</span>
+              <span className="text-muted">{item.measure}</span>
             </li>
           ))}
         </ul>
@@ -97,7 +97,7 @@ function RecipeDetailPage() {
             href={meal.strYoutube}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-block underline hover:text-stone-900"
+            className="mt-4 inline-block underline hover:text-paprika"
           >
             Watch on YouTube
           </a>
@@ -105,8 +105,8 @@ function RecipeDetailPage() {
       </div>
 
       <section className="md:col-span-2">
-        <h2 className="text-xl font-semibold text-stone-900">Instructions</h2>
-        <div className="mt-2 max-w-prose space-y-3 leading-relaxed text-stone-800">
+        <h2 className="font-display text-xl font-semibold text-ink">Instructions</h2>
+        <div className="mt-2 max-w-prose space-y-3 leading-relaxed text-ink">
           {steps.map((step, index) => (
             <p key={index}>{step}</p>
           ))}

@@ -20,7 +20,7 @@ function FavoriteItem({ id }: FavoriteItemProps) {
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error} />;
   if (!data || !Array.isArray(data.meals) || data.meals.length === 0) {
-    return <p className="text-stone-700">This recipe is no longer available.</p>;
+    return <p className="text-muted">This recipe is no longer available.</p>;
   }
 
   return <RecipeCard meal={data.meals[0]} />;
@@ -31,12 +31,12 @@ function FavoritesPage() {
 
   return (
     <section>
-      <h1 className="mb-6 text-3xl font-bold text-stone-900">Your favorites</h1>
+      <h1 className="mb-6 font-display text-3xl font-bold text-ink">Your favorites</h1>
 
       {favorites.length === 0 ? (
-        <p className="text-stone-700">
+        <p className="text-muted">
           You haven't saved any recipes yet.{" "}
-          <Link to="/" className="underline hover:text-stone-900">
+          <Link to="/" className="underline hover:text-paprika">
             Browse categories
           </Link>{" "}
           and add some.

@@ -18,7 +18,7 @@ function SearchPage() {
 
   // An empty search returns random meals from the API, which would be confusing
   if (query === "") {
-    return <p className="text-stone-700">Type a recipe name in the search bar to get started.</p>;
+    return <p className="text-muted">Type a recipe name in the search bar to get started.</p>;
   }
 
   if (loading) return <Spinner />;
@@ -26,12 +26,12 @@ function SearchPage() {
 
   return (
     <section>
-      <h1 className="mb-6 text-3xl font-bold text-stone-900">
+      <h1 className="mb-6 font-display text-3xl font-bold text-ink">
         Results for "{query}"
       </h1>
 
       {!data || !Array.isArray(data.meals) ? (
-        <p className="text-stone-700">No recipes match "{query}". Try a different name.</p>
+        <p className="text-muted">No recipes match "{query}". Try a different name.</p>
       ) : (
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {data.meals.map((meal) => (

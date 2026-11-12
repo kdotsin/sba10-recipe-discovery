@@ -16,9 +16,9 @@ function Navbar() {
   }
 
   return (
-    <header className="border-b border-stone-300 bg-stone-50">
+    <header className="border-b border-line bg-paper">
       <nav className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4">
-        <Link to="/" className="text-xl font-bold text-stone-900">
+        <Link to="/" className="font-display text-xl font-bold text-ink">
           Recipe Discovery
         </Link>
 
@@ -36,17 +36,17 @@ function Navbar() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search recipes..."
-            className="min-h-11 w-full rounded border border-stone-300 bg-white px-3 sm:w-64 focus-visible:outline-2 focus-visible:outline-stone-800"
+            className="min-h-11 w-full rounded border border-line bg-white px-3 sm:w-64 focus-visible:outline-2 focus-visible:outline-paprika"
           />
           <button
             type="submit"
-            className="min-h-11 rounded bg-stone-800 px-4 font-semibold text-white hover:bg-stone-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800"
+            className="min-h-11 rounded bg-paprika px-4 font-semibold text-white hover:bg-paprika-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paprika"
           >
             Search
           </button>
         </form>
 
-        <Link to="/favorites" className="text-stone-700 hover:text-stone-900">
+        <Link to="/favorites" className="text-muted hover:text-paprika">
           Favorites
         </Link>
       </nav>

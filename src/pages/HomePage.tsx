@@ -15,21 +15,21 @@ function HomePage() {
 
   return (
     <section>
-      <h1 className="mb-6 text-3xl font-bold text-stone-900">Browse by category</h1>
+      <h1 className="mb-6 font-display text-3xl font-bold text-ink">Browse by category</h1>
 
       <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {data.categories.map((category) => (
           <li key={category.idCategory}>
             <Link
               to={`/category/${category.strCategory}`}
-              className="block rounded border border-stone-200 bg-white p-4 hover:border-stone-400 focus-visible:outline-2 focus-visible:outline-stone-800"
+              className="block rounded border border-line bg-white p-4 hover:border-paprika focus-visible:outline-2 focus-visible:outline-paprika"
             >
               <img
                 src={category.strCategoryThumb}
                 alt=""
                 className="mx-auto h-24 object-contain"
               />
-              <p className="mt-3 text-center font-semibold text-stone-800">
+              <p className="mt-3 text-center font-semibold text-ink">
                 {category.strCategory}
               </p>
             </Link>

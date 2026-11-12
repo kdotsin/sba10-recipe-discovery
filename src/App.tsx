@@ -5,6 +5,7 @@ import CategoryPage from './pages/CategoryPage'
 import RecipeDetailPage from './pages/RecipeDetailPage'
 import FavoritesPage from './pages/FavoritesPage'
 import SearchPage from './pages/SearchPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/recipe/:recipeId" element={<RecipeDetailPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/search" element={<SearchPage />} />
+          {/* "*" matches any URL not listed above */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </>

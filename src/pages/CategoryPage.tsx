@@ -18,10 +18,10 @@ function CategoryPage() {
 
   return (
     <section>
-      <h1 className="mb-6 text-3xl font-bold text-stone-900">{categoryName}</h1>
+      <h1 className="mb-6 font-display text-3xl font-bold text-ink">{categoryName}</h1>
 
       {!data?.meals ? (
-        <p className="text-stone-700">No recipes found in this category.</p>
+        <p className="text-muted">No recipes found in this category.</p>
       ) : (
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {data.meals.map((meal) => (

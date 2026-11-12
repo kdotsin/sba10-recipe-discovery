@@ -1,32 +1,36 @@
-# React + TypeScript + Vite
+# Recipe Discovery
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + TypeScript single-page app for browsing recipes from [TheMealDB](https://www.themealdb.com/api.php). Browse by category, search by name, open a recipe for its ingredients and instructions, and save favorites that persist across browser sessions.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Pages
+
+| Route | What it shows |
+| --- | --- |
+| `/` | All recipe categories |
+| `/category/:categoryName` | Recipes in one category |
+| `/recipe/:recipeId` | Full recipe, with an Add/Remove Favorites button |
+| `/favorites` | Saved recipes, or a prompt to add some |
+| `/search?query=...` | Recipes matching the search bar |
+| `*` | Not found page |
+
+## How it's built
+
+- **`useFetch<T>(url)`** (`src/hooks/useFetch.ts`) returns `{ data, loading, error }`. It ignores responses from a request that's out of date, so fast navigation can't show the wrong data.
+- **`useLocalStorage<T>(key, initial)`** (`src/hooks/useLocalStorage.ts`) works like `useState`, but also saves the value to `localStorage`.
+- **`FavoritesContext`** (`src/context/FavoritesContext.tsx`) stores favorite recipe IDs with `useLocalStorage` and provides `favorites`, `addFavorite`, `removeFavorite` and `isFavorite`.
+- **Components:** `Navbar` (with search), `RecipeCard`, `Spinner`, `ErrorMessage`.
+- **Routing:** React Router (`react-router-dom`).
+- **Styling:** Tailwind v4 (browser CDN), with the theme colors and fonts (Fraunces + Inter Tight) set in `index.html`.
+
+## API quirks handled
+
+- `filter.php` and `search.php` return `{ "meals": null }` when nothing matches.
+- `lookup.php` returns `{ "meals": "Invalid ID" }` (a string) for a non-numeric id, so pages check `Array.isArray(data.meals)`.
+- Recipes store ingredients as `strIngredient1`–`20` and `strMeasure1`–`20`, and some of those slots are empty strings or `null`.

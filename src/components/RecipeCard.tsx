@@ -9,14 +9,14 @@ function RecipeCard({ meal }: RecipeCardProps) {
   return (
     <Link
       to={`/recipe/${meal.idMeal}`}
-      className="block overflow-hidden rounded border border-stone-200 bg-white hover:border-stone-400 focus-visible:outline-2 focus-visible:outline-stone-800"
+      className="block overflow-hidden rounded border border-line bg-white hover:border-paprika focus-visible:outline-2 focus-visible:outline-paprika"
     >
       <img
         src={meal.strMealThumb}
         alt=""
         className="aspect-square w-full object-cover"
       />
-      <p className="p-3 font-semibold text-stone-800">{meal.strMeal}</p>
+      <p className="p-3 font-semibold text-ink">{meal.strMeal}</p>
     </Link>
   );
 }
