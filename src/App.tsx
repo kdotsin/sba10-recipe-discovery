@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import CategoryPage from './pages/CategoryPage'
 import RecipeDetailPage from './pages/RecipeDetailPage'
+import FavoritesPage from './pages/FavoritesPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/recipe/:recipeId" element={<RecipeDetailPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
         </Routes>
       </main>
     </>
