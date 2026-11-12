@@ -10,3 +10,15 @@ export interface Category {
 export interface CategoriesResponse {
   categories: Category[];
 }
+
+// The short version of a meal that filter.php returns
+export interface MealSummary {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
+}
+
+// meals is null when nothing matches (e.g. an unknown category)
+export interface MealSummaryResponse {
+  meals: MealSummary[] | null;
+}
